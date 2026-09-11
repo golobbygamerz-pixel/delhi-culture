@@ -1,99 +1,249 @@
 // script.js
-const products=[
- {id:1,name:"CORE LOGO TEE",price:1499,cat:"tees"},
- {id:2,name:"DELHI BOX TEE",price:1699,cat:"tees"},
- {id:3,name:"NOIR BAGGY PANTS",price:2499,cat:"bottoms"},
- {id:4,name:"CITY CARGO",price:2799,cat:"bottoms"},
- {id:5,name:"SIGNAL OVERSHIRT",price:2999,cat:"outerwear"},
- {id:6,name:"NIGHT SHIFT JACKET",price:3499,cat:"outerwear"},
- {id:7,name:"RAW FIT TEE",price:1399,cat:"tees"},
- {id:8,name:"EAST DELHI DENIM",price:3199,cat:"bottoms"}
-];
 
-let cart=JSON.parse(localStorage.getItem("dc-cart")||"[]");
+const $ = (s) => document.querySelector(s);
+const $$ = (s) => document.querySelectorAll(s);
 
-const money=n=>"₹"+n.toLocaleString("en-IN");
+/* CURSOR */
 
-function renderProducts(list=products){
-  document.querySelector("#products").innerHTML=list.map(p=>`
-    <article class="product" onclick="quick(${p.id})">
-      <div class="product-visual"></div>
-      <button class="quick" onclick="event.stopPropagation();add(${p.id})">ADD TO BAG</button>
-      <div class="product-info"><strong>${p.name}</strong><span>${money(p.price)}</span></div>
-    </article>`).join("");
-}
+const cursor = $(".cursor");
+const dot = $(".cursor-dot");
 
-function renderCart(){
-  const box=document.querySelector("#cartItems");
-  document.querySelector("#cartCount").textContent=cart.reduce((a,i)=>a+i.qty,0);
-  if(!cart.length){box.innerHTML="<p style='font-size:12px;color:#888'>YOUR BAG IS EMPTY.</p>";}
-  else box.innerHTML=cart.map(i=>`
-    <div class="cart-item">
-      <div class="mini-visual"></div>
-      <div><strong style="font-size:11px">${i.name}</strong><div style="font-size:10px;margin-top:8px">${money(i.price)}</div>
-      <div class="qty"><button onclick="change(${i.id},-1)">−</button>${i.qty}<button onclick="change(${i.id},1)">+</button></div></div>
-      <button onclick="removeItem(${i.id})">×</button>
-    </div>`).join("");
-  document.querySelector("#subtotal").textContent=money(cart.reduce((a,i)=>a+i.price*i.qty,0));
-  localStorage.setItem("dc-cart",JSON.stringify(cart));
-}
+window.addEventListener("mousemove", (e) => {
+  cursor.style.left = `${e.clientX}px`;
+  cursor.style.top = `${e.clientY}px`;
 
-function add(id){
-  const p=products.find(x=>x.id===id), item=cart.find(x=>x.id===id);
-  item?item.qty++:cart.push({...p,qty:1});
-  renderCart();document.querySelector("#cart").classList.add("open");
-}
-function change(id,n){
-  const i=cart.find(x=>x.id===id);if(!i)return;
-  i.qty+=n;if(i.qty<1)cart=cart.filter(x=>x.id!==id);renderCart();
-}
-function removeItem(id){cart=cart.filter(x=>x.id!==id);renderCart()}
-
-function quick(id){
-  const p=products.find(x=>x.id===id);
-  document.querySelector("#quickContent").innerHTML=`
-    <div class="quick-grid">
-      <div class="quick-big"></div>
-      <div class="quick-info">
-        <p>${p.cat.toUpperCase()}</p><h2>${p.name}</h2>
-        <p>Designed for everyday movement. Clean silhouette, relaxed fit and a minimal Delhi Culture identity.</p>
-        <h3>${money(p.price)}</h3>
-        <button onclick="add(${p.id});closeQuick()">ADD TO BAG — ${money(p.price)}</button>
-      </div>
-    </div>`;
-  document.querySelector("#quickView").classList.add("open");
-}
-function closeQuick(){document.querySelector("#quickView").classList.remove("open")}
-
-document.querySelectorAll(".filter").forEach(b=>b.onclick=()=>{
-  document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));
-  b.classList.add("active");
-  renderProducts(b.dataset.filter==="all"?products:products.filter(p=>p.cat===b.dataset.filter));
+  dot.style.left = `${e.clientX}px`;
+  dot.style.top = `${e.clientY}px`;
 });
 
-document.querySelector("#cartBtn").onclick=()=>document.querySelector("#cart").classList.add("open");
-document.querySelector("#closeCart").onclick=()=>document.querySelector("#cart").classList.remove("open");
-document.querySelector("#closeQuick").onclick=closeQuick;
+$$("a,button,.product-card").forEach(el => {
+  el.addEventListener("mouseenter", () => {
+    cursor.style.width = "65px";
+    cursor.style.height = "65px";
+  });
 
-document.querySelector("#searchBtn").onclick=()=>{
-  document.querySelector("#searchPanel").classList.add("open");
-  document.querySelector("#searchInput").focus();
-};
-document.querySelector("#searchPanel .close").onclick=()=>document.querySelector("#searchPanel").classList.remove("open");
+  el.addEventListener("mouseleave", () => {
+    cursor.style.width = "38px";
+    cursor.style.height = "38px";
+  });
+});
 
-document.querySelector("#searchInput").oninput=e=>{
-  const q=e.target.value.toLowerCase();
-  document.querySelector("#searchResults").innerHTML=products.filter(p=>p.name.toLowerCase().includes(q))
-  .map(p=>`<button onclick="quick(${p.id})" style="text-align:left;padding:15px 0;border-bottom:1px solid #ddd;font-weight:700">${p.name} — ${money(p.price)}</button>`).join("");
-};
 
-document.querySelector("#checkout").onclick=()=>{
-  if(!cart.length)return alert("Your bag is empty.");
-  alert("Checkout is ready for Razorpay integration. Connect your Razorpay backend before accepting live payments.");
-};
+/* SEARCH */
 
-const observer=new IntersectionObserver(entries=>entries.forEach(e=>e.isIntersecting&&e.target.classList.add("visible")),{threshold:.12});
-document.querySelectorAll(".reveal").forEach(e=>observer.observe(e));
+const searchOverlay = $("#searchOverlay");
+const searchBtn = $("#searchBtn");
+const closeSearch = $("#closeSearch");
 
-renderProducts();
-renderCart();
+searchBtn.addEventListener("click", () => {
+  searchOverlay.classList.add("open");
+
+  setTimeout(() => {
+    searchOverlay.querySelector("input").focus();
+  }, 500);
+});
+
+closeSearch.addEventListener("click", () => {
+  searchOverlay.classList.remove("open");
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    searchOverlay.classList.remove("open");
+  }
+});
+
+
+/* FILTER */
+
+const filterButtons = $$(".filter-bar button");
+const products = $$(".product-card");
+
+filterButtons.forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    filterButtons.forEach(btn => {
+      btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    const category = button.textContent.trim();
+
+    products.forEach(product => {
+
+      const name =
+        product.querySelector("h3").textContent.toLowerCase();
+
+      let show = true;
+
+      if (category === "TEES") {
+        show = name.includes("tee");
+      }
+
+      if (category === "BOTTOMS") {
+        show = name.includes("pants");
+      }
+
+      if (category === "OUTERWEAR") {
+        show = name.includes("hoodie");
+      }
+
+      product.style.display = show ? "" : "none";
+    });
+
+  });
+
+});
+
+
+/* SCROLL REVEAL */
+
+const revealItems = [
+  ...$$(".statement-text"),
+  ...$$(".product-card"),
+  ...$$(".culture-copy"),
+  ...$$(".culture-art"),
+  ...$$(".final-cta")
+];
+
+revealItems.forEach(el => {
+  el.classList.add("reveal");
+});
+
+const observer = new IntersectionObserver(
+  entries => {
+
+    entries.forEach(entry => {
+
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+        observer.unobserve(entry.target);
+      }
+
+    });
+
+  },
+  {
+    threshold:.12
+  }
+);
+
+revealItems.forEach(el => observer.observe(el));
+
+
+/* PARALLAX */
+
+window.addEventListener("scroll", () => {
+
+  const scroll = window.scrollY;
+  const orbit = $(".hero-orbit");
+  const heroTitle = $(".hero-title");
+
+  if (scroll < window.innerHeight * 1.2) {
+
+    orbit.style.transform =
+      `translateY(calc(-50% + ${scroll * .12}px)) rotate(${scroll * .025}deg)`;
+
+    heroTitle.style.transform =
+      `translateY(${scroll * .08}px)`;
+
+  }
+
+});
+
+
+/* PRODUCT MAGNETIC EFFECT */
+
+products.forEach(card => {
+
+  card.addEventListener("mousemove", e => {
+
+    const rect = card.getBoundingClientRect();
+
+    const x =
+      (e.clientX - rect.left - rect.width / 2) / 25;
+
+    const y =
+      (e.clientY - rect.top - rect.height / 2) / 25;
+
+    card.style.transform =
+      `perspective(900px) rotateX(${-y}deg) rotateY(${x}deg)`;
+
+  });
+
+  card.addEventListener("mouseleave", () => {
+
+    card.style.transform =
+      "perspective(900px) rotateX(0) rotateY(0)";
+
+  });
+
+});
+
+
+/* SMOOTH ANCHOR */
+
+$$('a[href^="#"]').forEach(link => {
+
+  link.addEventListener("click", e => {
+
+    const target = document.querySelector(
+      link.getAttribute("href")
+    );
+
+    if (!target) return;
+
+    e.preventDefault();
+
+    target.scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+
+  });
+
+});
+
+
+/* HERO MOUSE MOVEMENT */
+
+const hero = $(".hero");
+
+hero.addEventListener("mousemove", e => {
+
+  const x =
+    (e.clientX / window.innerWidth - .5) * 20;
+
+  const y =
+    (e.clientY / window.innerHeight - .5) * 20;
+
+  $(".hero-grid").style.transform =
+    `translate(${x}px,${y}px)`;
+
+  $(".orbit-core").style.transform =
+    `translate(${x * .7}px,${y * .7}px)`;
+
+});
+
+
+/* PREVENT SEARCH FORM ISSUES */
+
+const searchInput = $(".search-inner input");
+
+searchInput.addEventListener("keydown", e => {
+
+  if (e.key === "Enter") {
+
+    const value = searchInput.value.trim();
+
+    if (value) {
+      searchInput.value = "";
+      searchInput.placeholder =
+        `SEARCHING: ${value.toUpperCase()}`;
+    }
+
+  }
+
+});
