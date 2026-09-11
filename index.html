@@ -1,124 +1,292 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#000">
-  <title>DELHI CULTURE — Streetwear</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DELHI CULTURE — Built Different</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div class="loader"><span>DELHI CULTURE</span></div>
-
-<header class="nav">
-  <button class="menu" aria-label="Menu">☰</button>
-  <a class="logo" href="#">DELHI<br><span>CULTURE</span></a>
-
-  <nav>
-    <a href="#shop">SHOP</a>
-    <a href="#new">NEW DROP</a>
-    <a href="#culture">CULTURE</a>
-  </nav>
-
-  <div class="nav-actions">
-    <button id="searchBtn">SEARCH</button>
-    <button id="cartBtn">BAG (<span id="cartCount">0</span>)</button>
+  <div class="loader">
+    <div class="loader-logo">DC</div>
+    <div class="loader-line"></div>
+    <span>DELHI CULTURE / 001</span>
   </div>
-</header>
 
-<main>
+  <div class="cursor"></div>
+  <div class="cursor-dot"></div>
 
-<section class="hero">
-  <div class="hero-copy reveal">
-    <p>DELHI / INDIA — 2026</p>
-    <h1>EVERYDAY<br><i>FIT.</i><br>ELEVATED.</h1>
-    <a class="line-btn" href="#shop">SHOP COLLECTION <span>↗</span></a>
-  </div>
-  <div class="hero-art">
-    <div class="art-shirt">DC</div>
-    <small>01 / 04</small>
-  </div>
-</section>
+  <header class="nav">
+    <a href="#" class="logo">DELHI<br>CULTURE</a>
 
-<section class="ticker">
-  <div>DELHI CULTURE — BUILT FOR THE CITY — DELHI CULTURE — BUILT FOR THE CITY — </div>
-</section>
+    <nav class="nav-links">
+      <a href="#shop">SHOP</a>
+      <a href="#culture">CULTURE</a>
+      <a href="#drop">DROP 01</a>
+    </nav>
 
-<section id="new" class="statement reveal">
-  <p>THE NEW STANDARD</p>
-  <h2>STREETWEAR<br>WITH A <em>POINT OF VIEW.</em></h2>
-</section>
-
-<section id="shop" class="shop">
-  <div class="section-head">
-    <div>
-      <p>SHOP / 001</p>
-      <h2>THE COLLECTION</h2>
+    <div class="nav-right">
+      <button class="nav-btn" id="searchBtn">SEARCH</button>
+      <button class="nav-btn">CART <span id="cartCount">0</span></button>
     </div>
-    <div class="filters">
-      <button class="filter active" data-filter="all">ALL</button>
-      <button class="filter" data-filter="tees">TEES</button>
-      <button class="filter" data-filter="bottoms">BOTTOMS</button>
-      <button class="filter" data-filter="outerwear">OUTERWEAR</button>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+
+      <div class="hero-meta">
+        <span>NEW DELHI / INDIA</span>
+        <span>EST. 2026</span>
+      </div>
+
+      <div class="hero-grid"></div>
+
+      <div class="hero-title">
+        <div class="small-title">NOT MADE TO BLEND IN.</div>
+
+        <h1>
+          DELHI
+          <span>CULTURE</span>
+        </h1>
+
+        <div class="hero-bottom">
+          <p>
+            STREETWEAR FOR THE ONES<br>
+            WHO MOVE DIFFERENT.
+          </p>
+
+          <a href="#shop" class="circle-link">
+            <span>EXPLORE</span>
+            <b>↘</b>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-orbit">
+        <div class="orbit-ring ring-one"></div>
+        <div class="orbit-ring ring-two"></div>
+        <div class="orbit-core">DC</div>
+      </div>
+
+      <div class="scroll-mark">
+        <span>SCROLL TO DISCOVER</span>
+        <i></i>
+      </div>
+
+    </section>
+
+    <!-- STATEMENT -->
+    <section class="statement" id="drop">
+
+      <div class="statement-top">
+        <span>01 / 04</span>
+        <span>THE NEW DELHI UNIFORM</span>
+      </div>
+
+      <div class="statement-text">
+        WE DON'T
+        <span>FOLLOW</span>
+        <em>THE CITY.</em>
+        <strong>WE MOVE IT.</strong>
+      </div>
+
+      <div class="statement-footer">
+        <span>DELHI — 28.6139° N</span>
+        <span>BUILT FROM THE STREETS UP.</span>
+      </div>
+
+    </section>
+
+    <!-- SHOP -->
+    <section class="shop" id="shop">
+
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">DROP 01 / 2026</span>
+          <h2>THE<br><i>COLLECTION.</i></h2>
+        </div>
+
+        <p>
+          A uniform for late nights,<br>
+          concrete mornings & everything<br>
+          in between.
+        </p>
+      </div>
+
+      <div class="filter-bar">
+        <button class="active">ALL</button>
+        <button>TEES</button>
+        <button>BOTTOMS</button>
+        <button>OUTERWEAR</button>
+      </div>
+
+      <div class="products">
+
+        <article class="product-card">
+          <div class="product-visual visual-one">
+            <span>01</span>
+            <div class="shirt-shape"></div>
+            <b>DC / 001</b>
+          </div>
+          <div class="product-info">
+            <div>
+              <h3>DELHI STANDARD TEE</h3>
+              <p>HEAVYWEIGHT / BLACK</p>
+            </div>
+            <strong>₹1,899</strong>
+          </div>
+        </article>
+
+        <article class="product-card featured">
+          <div class="product-visual visual-two">
+            <span>02</span>
+            <div class="shirt-shape"></div>
+            <b>DC / 002</b>
+          </div>
+          <div class="product-info">
+            <div>
+              <h3>NO SIGNAL TEE</h3>
+              <p>OVERSIZED / WHITE</p>
+            </div>
+            <strong>₹2,099</strong>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-visual visual-three">
+            <span>03</span>
+            <div class="shirt-shape"></div>
+            <b>DC / 003</b>
+          </div>
+          <div class="product-info">
+            <div>
+              <h3>BLOCK 47 PANTS</h3>
+              <p>RELAXED / BLACK</p>
+            </div>
+            <strong>₹2,799</strong>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-visual visual-four">
+            <span>04</span>
+            <div class="shirt-shape"></div>
+            <b>DC / 004</b>
+          </div>
+          <div class="product-info">
+            <div>
+              <h3>AFTER DARK HOODIE</h3>
+              <p>450 GSM / CHARCOAL</p>
+            </div>
+            <strong>₹3,299</strong>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="shop-more">
+        <a href="#">VIEW FULL DROP <span>↗</span></a>
+      </div>
+
+    </section>
+
+    <!-- CULTURE -->
+    <section class="culture" id="culture">
+
+      <div class="culture-no">02</div>
+
+      <div class="culture-copy">
+        <span class="eyebrow">THE CITY IS THE MOOD.</span>
+
+        <h2>
+          BORN IN
+          <span>DELHI.</span>
+          <small>WORN EVERYWHERE.</small>
+        </h2>
+
+        <p>
+          Concrete. Chaos. Culture.
+          DELHI CULTURE is a visual language
+          built around the energy of the city.
+          No rules. No uniforms. Just movement.
+        </p>
+
+        <a href="#" class="text-link">OUR STORY ↗</a>
+      </div>
+
+      <div class="culture-art">
+        <div class="dc-large">DC</div>
+        <div class="vertical-text">DELHI CULTURE / 110001</div>
+        <div class="art-circle"></div>
+      </div>
+
+    </section>
+
+    <!-- MARQUEE -->
+    <section class="marquee">
+      <div>
+        DELHI CULTURE — BUILT DIFFERENT — DELHI CULTURE — BUILT DIFFERENT —
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="final-cta">
+
+      <span class="eyebrow">03 / 04 — YOUR MOVE</span>
+
+      <h2>
+        WEAR THE
+        <span>CULTURE.</span>
+      </h2>
+
+      <a href="#shop" class="big-button">
+        ENTER THE DROP
+        <span>↗</span>
+      </a>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-logo">DC</div>
+
+      <div class="footer-links">
+        <a href="#">INSTAGRAM</a>
+        <a href="#">CONTACT</a>
+        <a href="#">SHIPPING</a>
+        <a href="#">RETURNS</a>
+      </div>
+
+      <div class="footer-location">
+        NEW DELHI<br>
+        INDIA — 110001
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 DELHI CULTURE</span>
+      <span>MADE FOR THE MOVERS.</span>
+    </div>
+  </footer>
+
+  <div class="search-overlay" id="searchOverlay">
+    <button id="closeSearch">CLOSE ×</button>
+
+    <div class="search-inner">
+      <span>SEARCH THE CULTURE</span>
+      <input type="text" placeholder="TYPE HERE..." autofocus>
     </div>
   </div>
 
-  <div id="products" class="products"></div>
-</section>
-
-<section id="culture" class="culture reveal">
-  <div>
-    <p>FROM THE STREETS</p>
-    <h2>MADE IN<br>DELHI.</h2>
-  </div>
-  <div class="culture-copy">
-    <p>Inspired by late nights, crowded streets, old neighborhoods and the new generation shaping the city.</p>
-    <a href="#shop" class="line-btn">EXPLORE THE CULTURE <span>↗</span></a>
-  </div>
-</section>
-
-<section class="newsletter reveal">
-  <p>STAY IN THE LOOP</p>
-  <h2>DON'T FOLLOW.<br>SET THE <em>PACE.</em></h2>
-  <form onsubmit="event.preventDefault();this.querySelector('button').textContent='JOINED ✓'">
-    <input type="email" placeholder="YOUR EMAIL" required>
-    <button>JOIN</button>
-  </form>
-</section>
-
-</main>
-
-<footer>
-  <div class="logo">DELHI<br><span>CULTURE</span></div>
-  <p>© 2026 DELHI CULTURE</p>
-  <div><a href="#">INSTAGRAM</a><a href="#">CONTACT</a></div>
-</footer>
-
-<div id="searchPanel" class="overlay">
-  <button class="close">×</button>
-  <input id="searchInput" placeholder="SEARCH PRODUCTS...">
-  <div id="searchResults"></div>
-</div>
-
-<aside id="cart" class="cart">
-  <div class="cart-head"><h2>YOUR BAG</h2><button id="closeCart">×</button></div>
-  <div id="cartItems"></div>
-  <div class="cart-bottom">
-    <div><span>SUBTOTAL</span><strong id="subtotal">₹0</strong></div>
-    <button id="checkout">CHECKOUT <span>↗</span></button>
-  </div>
-</aside>
-
-<div id="quickView" class="modal">
-  <button id="closeQuick">×</button>
-  <div id="quickContent"></div>
-</div>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
