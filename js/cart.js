@@ -75,4 +75,30 @@ function addToCart(id) {
   showToast(`${product.name} added`);
 
   const btn = document.querySelector(`.add-btn[data-id="${id}"]`);
-  if (btn
+  if (btn) {
+    btn.classList.add('added');
+    btn.textContent = 'Added ✓';
+    setTimeout(() => { btn.classList.remove('added'); btn.textContent = 'Add to Cart'; }, 1500);
+  }
+}
+
+/* Event delegation — works for all 3 grids */
+document.addEventListener('click', e => {
+  const btn = e.target.closest('.add-btn');
+  if (btn) {
+    e.stopPropagation();
+    addToCart(Number(btn.dataset.id));
+  }
+});
+
+cartBtn.addEventListener('click', openCart);
+closeCartBtn.addEventListener('click', closeCart);
+cartOverlay.addEventListener('click', closeCart);
+
+document.getElementById('newsletterForm').addEventListener('submit', e => {
+  e.preventDefault();
+  showToast("You're on the list. Stay tuned.");
+  e.target.reset();
+});
+
+updateCartUI();
