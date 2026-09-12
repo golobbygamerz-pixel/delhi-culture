@@ -4,517 +4,33 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Delhi Culture — Streetwear from the Capital</title>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <style>
-    /* ---------- RESET & VARS ---------- */
-    :root {
-      --saffron: #FF6B1A;
-      --marigold: #FFB627;
-      --deep: #1A0F0A;
-      --cream: #F5EFE6;
-      --red: #C1272D;
-      --bg-soft: #efe9df;
-      --shadow: 0 12px 40px rgba(26,15,10,0.12);
-      --radius: 20px;
-      --radius-sm: 12px;
-    }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
-    body {
-      background: var(--cream);
-      color: var(--deep);
-      font-family: 'Inter', sans-serif;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
-    img { display:block; max-width:100%; }
-    a { text-decoration:none; color:inherit; }
 
-    /* ---------- SCROLLBAR ---------- */
-    ::-webkit-scrollbar { width:6px; }
-    ::-webkit-scrollbar-track { background:var(--cream); }
-    ::-webkit-scrollbar-thumb { background:var(--saffron); border-radius:99px; }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
 
-    /* ---------- NAV ---------- */
-    nav {
-      position:fixed; top:0; left:0; right:0;
-      display:flex; justify-content:space-between; align-items:center;
-      padding:18px 5vw;
-      z-index:1000;
-      background: rgba(245,239,230,0.75);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom:1px solid rgba(26,15,10,0.06);
-      transition: background 0.3s;
-    }
-    nav.scrolled { background: rgba(245,239,230,0.95); }
-    .logo {
-      font-family:'Anton',sans-serif;
-      font-size:1.5rem;
-      letter-spacing:2px;
-      text-transform:uppercase;
-      line-height:1;
-    }
-    .logo span { color: var(--saffron); }
-    .nav-links { display:flex; gap:36px; list-style:none; }
-    .nav-links a {
-      font-size:0.8rem; font-weight:600;
-      text-transform:uppercase; letter-spacing:2px;
-      position:relative;
-      padding-bottom:4px;
-      transition: color 0.3s;
-    }
-    .nav-links a::after {
-      content:'';
-      position:absolute; bottom:0; left:0;
-      width:0; height:2px;
-      background:var(--saffron);
-      transition: width 0.35s cubic-bezier(.77,0,.18,1);
-    }
-    .nav-links a:hover { color: var(--saffron); }
-    .nav-links a:hover::after { width:100%; }
-    .cart-btn {
-      display:flex; align-items:center; gap:10px;
-      font-size:0.8rem; font-weight:700;
-      text-transform:uppercase; letter-spacing:2px;
-      cursor:pointer;
-      background: var(--deep);
-      color: var(--cream);
-      padding:10px 20px;
-      border-radius: 99px;
-      border:none;
-      transition: background 0.3s, transform 0.2s;
-    }
-    .cart-btn:hover { background: var(--saffron); transform: scale(1.03); }
-    .cart-btn .count {
-      background: var(--cream);
-      color: var(--deep);
-      font-size:0.7rem;
-      width:20px; height:20px;
-      display:grid; place-items:center;
-      border-radius:50%;
-      font-weight:800;
-    }
-    @media(max-width:768px){ .nav-links{display:none;} }
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
 
-    /* ---------- HERO ---------- */
-    .hero {
-      min-height:100vh;
-      display:flex; flex-direction:column; justify-content:center;
-      padding:140px 5vw 80px;
-      position:relative;
-      overflow:hidden;
-    }
-    .hero-blob {
-      position:absolute;
-      border-radius:50%;
-      filter: blur(80px);
-      opacity:0.45;
-      z-index:0;
-      animation: float 8s ease-in-out infinite;
-    }
-    .hero-blob.b1 {
-      width:600px; height:600px;
-      background: radial-gradient(circle, var(--marigold), transparent 70%);
-      top:-180px; right:-180px;
-    }
-    .hero-blob.b2 {
-      width:500px; height:500px;
-      background: radial-gradient(circle, var(--saffron), transparent 70%);
-      bottom:-200px; left:-150px;
-      animation-delay: -4s;
-    }
-    @keyframes float {
-      0%,100%{ transform: translate(0,0) scale(1); }
-      50%{ transform: translate(30px,-30px) scale(1.06); }
-    }
-    .hero-content { position:relative; z-index:1; }
-    .tagline {
-      font-size:0.75rem; letter-spacing:5px;
-      text-transform:uppercase; color: var(--red);
-      margin-bottom:24px; font-weight:700;
-      display:inline-flex; align-items:center; gap:12px;
-    }
-    .tagline::before {
-      content:''; width:40px; height:2px; background:var(--red);
-    }
-    h1 {
-      font-family:'Anton',sans-serif;
-      font-size: clamp(3.2rem, 13vw, 11rem);
-      line-height:0.85;
-      text-transform:uppercase;
-      letter-spacing:-2px;
-    }
-    h1 .accent { color: var(--saffron); font-style:italic; }
-    h1 .outline {
-      -webkit-text-stroke: 2px var(--deep);
-      color: transparent;
-    }
-    .hero-sub {
-      max-width:480px; margin-top:36px;
-      font-size:1rem; line-height:1.7;
-      color: rgba(26,15,10,0.7);
-    }
-    .cta-row {
-      margin-top:44px; display:flex; gap:16px; flex-wrap:wrap;
-    }
-    .btn {
-      padding:18px 36px;
-      border:none;
-      font-family:'Inter',sans-serif;
-      font-size:0.8rem; font-weight:700;
-      letter-spacing:2.5px;
-      text-transform:uppercase;
-      cursor:pointer;
-      border-radius:99px;
-      transition: transform 0.25s, background 0.3s, color 0.3s, box-shadow 0.3s;
-      display:inline-flex; align-items:center; gap:12px;
-    }
-    .btn-primary {
-      background: var(--deep); color: var(--cream);
-      box-shadow: 0 8px 24px rgba(26,15,10,0.25);
-    }
-    .btn-primary:hover { background: var(--saffron); transform: translateY(-3px); box-shadow: 0 14px 32px rgba(255,107,26,0.35); }
-    .btn-secondary {
-      background: transparent; color: var(--deep);
-      border: 2px solid var(--deep);
-    }
-    .btn-secondary:hover { background: var(--deep); color: var(--cream); transform: translateY(-3px); }
-
-    /* ---------- MARQUEE ---------- */
-    .marquee {
-      background: var(--deep); color: var(--cream);
-      padding:22px 0; overflow:hidden; white-space:nowrap;
-      display:flex;
-    }
-    .marquee-track {
-      display:inline-block;
-      animation: scroll 28s linear infinite;
-      font-family:'Anton',sans-serif;
-      font-size:1.4rem;
-      letter-spacing:3px;
-      text-transform:uppercase;
-      padding-right:20px;
-    }
-    .marquee-track span { margin:0 32px; color: var(--marigold); }
-    @keyframes scroll {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-
-    /* ---------- SECTION ---------- */
-    section { padding:110px 5vw; }
-    .section-head {
-      display:flex; justify-content:space-between; align-items:flex-end;
-      margin-bottom:64px; flex-wrap:wrap; gap:24px;
-    }
-    .section-head h2 {
-      font-family:'Anton',sans-serif;
-      font-size: clamp(2rem, 5.5vw, 4.5rem);
-      text-transform:uppercase; line-height:0.95;
-    }
-    .section-head h2 em { color: var(--saffron); font-style:italic; }
-    .section-head p {
-      color: rgba(26,15,10,0.6);
-      max-width:380px; font-size:0.95rem; line-height:1.6;
-    }
-
-    /* ---------- PRODUCT GRID ---------- */
-    .grid {
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap:28px;
-    }
-    .card {
-      background: var(--cream);
-      border:1px solid rgba(26,15,10,0.08);
-      border-radius: var(--radius);
-      overflow:hidden;
-      cursor:pointer;
-      transition: transform 0.4s cubic-bezier(.2,.8,.2,1), box-shadow 0.4s;
-      position:relative;
-      display:flex; flex-direction:column;
-      opacity:0; transform: translateY(30px);
-      animation: fadeUp 0.7s forwards;
-    }
-    .card:nth-child(1){ animation-delay:0.05s; }
-    .card:nth-child(2){ animation-delay:0.15s; }
-    .card:nth-child(3){ animation-delay:0.25s; }
-    .card:nth-child(4){ animation-delay:0.35s; }
-    .card:nth-child(5){ animation-delay:0.45s; }
-    .card:nth-child(6){ animation-delay:0.55s; }
-    .card:nth-child(7){ animation-delay:0.65s; }
-    @keyframes fadeUp { to { opacity:1; transform: translateY(0); } }
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow);
-    }
-    .card-img-wrap {
-      position:relative;
-      overflow:hidden;
-      background: var(--bg-soft);
-      aspect-ratio: 4/5;
-    }
-    .card-img-wrap img {
-      width:100%; height:100%; object-fit:cover;
-      transition: transform 0.6s cubic-bezier(.2,.8,.2,1);
-    }
-    .card:hover .card-img-wrap img { transform: scale(1.06); }
-    .card-badge {
-      position:absolute; top:16px; left:16px;
-      background: var(--deep); color: var(--cream);
-      font-size:0.65rem; font-weight:700;
-      letter-spacing:1.5px; text-transform:uppercase;
-      padding:6px 12px; border-radius:99px;
-    }
-    .card-badge.sale { background: var(--red); }
-    .card-info {
-      padding:20px 22px 22px;
-      display:flex; flex-direction:column; gap:12px;
-      flex:1;
-    }
-    .card-info .top-row {
-      display:flex; justify-content:space-between; align-items:flex-start; gap:12px;
-    }
-    .card-info h3 {
-      font-family:'Anton',sans-serif;
-      font-size:1.1rem;
-      text-transform:uppercase;
-      letter-spacing:1px;
-      line-height:1.2;
-    }
-    .price {
-      font-weight:700; color: var(--red);
-      font-size:1rem; white-space:nowrap;
-    }
-    .price small {
-      display:block; font-size:0.7rem;
-      color: rgba(26,15,10,0.4);
-      text-decoration:line-through;
-      font-weight:500;
-    }
-    .meta {
-      display:flex; gap:8px; flex-wrap:wrap;
-      font-size:0.7rem; font-weight:600;
-      text-transform:uppercase; letter-spacing:1px;
-      color: rgba(26,15,10,0.5);
-    }
-    .meta span {
-      background: var(--bg-soft);
-      padding:4px 10px; border-radius:99px;
-    }
-    .add-btn {
-      margin-top:auto;
-      width:100%;
-      padding:14px;
-      border: 2px solid var(--deep);
-      background: transparent;
-      color: var(--deep);
-      font-family:'Inter',sans-serif;
-      font-size:0.75rem; font-weight:700;
-      letter-spacing:2px; text-transform:uppercase;
-      border-radius:99px;
-      cursor:pointer;
-      transition: background 0.3s, color 0.3s, transform 0.2s;
-    }
-    .add-btn:hover {
-      background: var(--deep); color: var(--cream);
-      transform: scale(1.02);
-    }
-    .add-btn.added {
-      background: var(--saffron); border-color: var(--saffron); color: var(--cream);
-    }
-
-    /* ---------- STORY ---------- */
-    .story {
-      background: var(--deep); color: var(--cream);
-      padding:140px 5vw; text-align:center;
-      position:relative; overflow:hidden;
-    }
-    .story::before {
-      content:'';
-      position:absolute; width:700px; height:700px;
-      border-radius:50%;
-      background: radial-gradient(circle, rgba(255,182,39,0.12), transparent 70%);
-      top:-300px; right:-300px;
-    }
-    .story h2 {
-      font-family:'Anton',sans-serif;
-      font-size: clamp(2rem, 6.5vw, 5.5rem);
-      text-transform:uppercase; line-height:0.95;
-      max-width:900px; margin:0 auto 32px;
-      position:relative;
-    }
-    .story h2 .accent { color: var(--marigold); font-style:italic; }
-    .story p {
-      max-width:560px; margin:0 auto;
-      line-height:1.8; color: rgba(245,239,230,0.65);
-      font-size:1.05rem; position:relative;
-    }
-
-    /* ---------- NEWSLETTER ---------- */
-    .newsletter {
-      text-align:center;
-      padding:120px 5vw;
-    }
-    .newsletter h2 {
-      font-family:'Anton',sans-serif;
-      font-size: clamp(1.8rem, 4.5vw, 3.5rem);
-      text-transform:uppercase;
-      margin-bottom:16px;
-    }
-    .newsletter p { color: rgba(26,15,10,0.6); margin-bottom:36px; }
-    .newsletter form {
-      display:flex; gap:12px; max-width:520px; margin:0 auto;
-      flex-wrap:wrap; justify-content:center;
-    }
-    .newsletter input {
-      flex:1; min-width:240px;
-      padding:16px 24px;
-      border: 2px solid rgba(26,15,10,0.12);
-      background: transparent;
-      border-radius:99px;
-      font-family:'Inter',sans-serif;
-      font-size:0.9rem;
-      outline:none;
-      transition: border-color 0.3s;
-    }
-    .newsletter input:focus { border-color: var(--saffron); }
-
-    /* ---------- FOOTER ---------- */
-    footer {
-      background: var(--deep); color: rgba(245,239,230,0.6);
-      padding:60px 5vw 40px;
-      text-align:center;
-      font-size:0.85rem;
-    }
-    footer .logo { color: var(--cream); margin-bottom:20px; font-size:1.8rem; }
-    footer .links {
-      display:flex; gap:32px; justify-content:center;
-      margin:24px 0; flex-wrap:wrap;
-    }
-    footer .links a {
-      transition: color 0.3s; text-transform:uppercase;
-      letter-spacing:1.5px; font-size:0.75rem; font-weight:600;
-    }
-    footer .links a:hover { color: var(--saffron); }
-
-    /* ---------- CART DRAWER ---------- */
-    .cart-overlay {
-      position:fixed; inset:0;
-      background: rgba(26,15,10,0.4);
-      backdrop-filter: blur(4px);
-      opacity:0; pointer-events:none;
-      transition: opacity 0.4s;
-      z-index:2000;
-    }
-    .cart-overlay.open { opacity:1; pointer-events:all; }
-    .cart-drawer {
-      position:fixed; top:0; right:0;
-      width:min(420px, 100%);
-      height:100vh;
-      background: var(--cream);
-      z-index:2001;
-      transform: translateX(100%);
-      transition: transform 0.5s cubic-bezier(.77,0,.18,1);
-      display:flex; flex-direction:column;
-      padding:32px 28px;
-      box-shadow: -20px 0 60px rgba(26,15,10,0.15);
-    }
-    .cart-drawer.open { transform: translateX(0); }
-    .cart-head {
-      display:flex; justify-content:space-between; align-items:center;
-      padding-bottom:24px;
-      border-bottom:1px solid rgba(26,15,10,0.1);
-      margin-bottom:20px;
-    }
-    .cart-head h3 {
-      font-family:'Anton',sans-serif;
-      font-size:1.4rem; text-transform:uppercase; letter-spacing:1px;
-    }
-    .close-cart {
-      background:none; border:none; cursor:pointer;
-      font-size:1.6rem; line-height:1; color: var(--deep);
-      transition: transform 0.3s;
-    }
-    .close-cart:hover { transform: rotate(90deg); }
-    .cart-items { flex:1; overflow-y:auto; display:flex; flex-direction:column; gap:18px; }
-    .cart-item {
-      display:flex; gap:16px; align-items:center;
-      padding-bottom:18px;
-      border-bottom:1px solid rgba(26,15,10,0.06);
-    }
-    .cart-item img {
-      width:70px; height:88px; object-fit:cover;
-      border-radius: var(--radius-sm);
-      background: var(--bg-soft);
-    }
-    .cart-item-info { flex:1; }
-    .cart-item-info h4 {
-      font-family:'Anton',sans-serif;
-      font-size:0.85rem; text-transform:uppercase;
-      letter-spacing:0.5px; margin-bottom:4px;
-    }
-    .cart-item-info p { font-size:0.8rem; color: rgba(26,15,10,0.5); }
-    .cart-item-price { font-weight:700; color: var(--red); font-size:0.9rem; }
-    .cart-empty {
-      text-align:center; padding:60px 20px;
-      color: rgba(26,15,10,0.4);
-      font-size:0.9rem;
-    }
-    .cart-footer {
-      padding-top:24px;
-      border-top:1px solid rgba(26,15,10,0.1);
-    }
-    .cart-total {
-      display:flex; justify-content:space-between;
-      font-family:'Anton',sans-serif;
-      font-size:1.2rem; text-transform:uppercase;
-      margin-bottom:20px;
-    }
-    .checkout-btn {
-      width:100%; padding:18px;
-      background: var(--saffron); color: var(--cream);
-      border:none; border-radius:99px;
-      font-family:'Inter',sans-serif;
-      font-size:0.8rem; font-weight:700;
-      letter-spacing:2.5px; text-transform:uppercase;
-      cursor:pointer;
-      transition: background 0.3s, transform 0.2s;
-    }
-    .checkout-btn:hover { background: var(--red); transform: scale(1.02); }
-
-    /* ---------- TOAST ---------- */
-    .toast {
-      position:fixed; bottom:32px; left:50%;
-      transform: translateX(-50%) translateY(20px);
-      background: var(--deep); color: var(--cream);
-      padding:14px 28px; border-radius:99px;
-      font-size:0.8rem; font-weight:600;
-      letter-spacing:1.5px; text-transform:uppercase;
-      opacity:0; pointer-events:none;
-      transition: opacity 0.4s, transform 0.4s;
-      z-index:3000;
-    }
-    .toast.show { opacity:1; transform: translateX(-50%) translateY(0); }
-
-    /* ---------- RESPONSIVE ---------- */
-    @media(max-width:600px){
-      section { padding:80px 5vw; }
-      .hero { padding-top:120px; }
-      .cart-drawer { padding:24px 20px; }
-    }
-  </style>
-</head>
+  <!-- GSAP + ScrollTrigger -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</headized>
 <body>
+
+  <!-- Custom Cursor -->
+ fits. Zero  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
 
   <!-- NAV -->
   <nav id="nav">
     <div class="logo">Delhi<span>.</span>Culture</div>
     <ul class="nav-links">
       <li><a href="#shop">Shop</a></li>
-      <li><a href="#story">Story</a></li>
-      <li><a href="#newsletter">Drop Alerts</a></li>
+      <li><a href="#denim">Denim</a></li>
+      <li><a href="#waffle">Waffle</a></li>
+      <li><a href="#boxy">Boxy</a></li>
+      <li><a href="#journal">Journal</a></li>
     </ul>
     <button class="cart-btn" id="cartBtn">
       Cart <span class="count" id="cartCount">0</span>
@@ -523,23 +39,36 @@
 
   <!-- HERO -->
   <header class="hero">
-    <div class="hero-blob b1"></div>
-    <div class="hero-blob b2"></div>
+    <div class="hero-blob b1" data-speed="0.3"></div>
+    <div class="hero-blob b2" data-speed="0.5"></div>
+    <div class="hero-grid-overlay"></div>
+
     <div class="hero-content">
-      <div class="tagline">Made in Delhi · Worn Everywhere</div>
-      <h1>
-        Street<br>
-        <span class="accent">Wear</span> <span class="outline">from</span><br>
-        the Capital.
+      <div class="tagline" data-anim="fade-up">Made in Delhi · Worn Everywhere</div>
+      <h1 class="hero-title">
+        <span class="line" data-anim="line">Street</span>
+        <span class="line" data-anim="line"><em>Wear</em> <span class="outline">from</span></span>
+        <span class="line" data-anim="line">the Capital.</span>
       </h1>
-      <p class="hero-sub">
-        Raw denim. Oversized fits. Zero compromise. Born in the lanes of Chandni Chowk, 
-        built for the streets of everywhere.
+      <p class="hero-sub" data-anim="fade-up">
+        Raw denim. Overs compromise.
+        Born in the lanes of Chandni Chowk, built for the streets of everywhere.
       </p>
-      <div class="cta-row">
+      <div class="cta-row" data-anim="fade-up">
         <a href="#shop" class="btn btn-primary">Shop the Drop →</a>
-        <a href="#story" class="btn btn-secondary">Our Story</a>
+        <a href="#journal" class="btn btn-secondary">Read Journal</a>
       </div>
+
+      <div class="hero-meta" data-anim="fade-up">
+        <div><strong>004</strong><span>Current Drop</span></div>
+        <div><strong>7</strong><span>New Pieces</span></div>
+        <div><strong>28°N</strong><span>Delhi Made</span></div>
+      </div>
+    </div>
+
+    <div class="hero-scroll" data-anim="fade-up">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
     </div>
   </header>
 
@@ -550,44 +79,126 @@
     </div>
   </div>
 
-  <!-- SHOP -->
-  <section id="shop">
-    <div class="section-head">
-      <h2>The <em>Drop</em></h2>
-      <p>Seven pieces. Handpicked silhouettes. Limited runs — once it's gone, it's gone.</p>
+  <!-- DENIM SECTION -->
+  <section id="denim" class="collection">
+    <div class="section-head" data-anim="fade-up">
+      <div>
+        <div class="section-tag">01 — Denim</div>
+        <h2>The <em>Denim</em> Files</h2>
+      </div>
+      <p>Heavyweight. Hand-finished. Washed in Delhi, worn everywhere.</p>
     </div>
+    <div class="grid" id="denimGrid"></div>
+  </section>
 
-    <div class="grid" id="productGrid">
-      <!-- Products injected by JS -->
+  <!-- WAFFLE SECTION -->
+  <section id="waffle" class="collection dark">
+    <div class="section-head" data-anim="fade-up">
+      <div>
+        <div class="section-tag">02 — Waffle</div>
+        <h2><em>Waffle</em> Knits</h2>
+      </div>
+      <p>Textured, breathable, built for Delhi winters and Bangalore nights.</p>
     </div>
+    <div class="grid" id="waffleGrid"></div>
+  </section>
+
+  <!-- BOXY SHIRTS -->
+  <section id="boxy" class="collection">
+    <div class="section-head" data-anim="fade-up">
+      <div>
+        <div class="section-tag">03 — Boxy Shirts</div>
+        <h2>Boxy <em>Shirts</em></h2>
+      </div>
+      <p>Relaxed cut. Dropped shoulders. Loud in the right places.</p>
+    </div>
+    <div class="grid" id="boxyGrid"></div>
   </section>
 
   <!-- STORY -->
   <section class="story" id="story">
-    <h2>From the <span class="accent">gully</span> to the globe.</h2>
-    <p>
-      Delhi Culture isn't just a brand — it's a feeling. The chaos of Karol Bagh, 
-      the calm of Lodhi Gardens, the hustle of every chai stall at 2 AM. 
-      We make clothes for people who move through the city like it's theirs.
-    </p>
+    <div class="story-inner">
+      <div class="section-tag light">Our Story</div>
+      <h2 data-anim="fade-up">From the <span class="accent">gully</span> to the globe.</h2>
+      <p data-anim="fade-up">
+        Delhi Culture isn't just a brand — it's a feeling. The chaos of Karol Bagh,
+        the calm of Lodhi Gardens, the hustle of every chai stall at 2 AM.
+        We make clothes for people who move through the city like it's theirs.
+      </p>
+    </div>
+  </section>
+
+  <!-- JOURNAL / ARTICLES -->
+  <section id="journal" class="journal">
+    <div class="section-head" data-anim="fade-up">
+      <div>
+        <div class="section-tag">04 — Journal</div>
+        <h2>Stories from <em>the Capital</em></h2>
+      </div>
+      <p>Fits, culture, and the people behind the streets.</p>
+    </div>
+
+    <div class="journal-grid">
+      <article class="article-card featured" data-anim="fade-up">
+        <div class="article-img" style="background-image:url('assets/article-1.jpg')"></div>
+        <div class="article-info">
+          <span class="article-tag">Fashion</span>
+          <h3>How Baggy Denim Took Over Delhi's Streets</h3>
+          <p>From Ballimaran to Instagram — a deep dive into the silhouette that reshaped Indian streetwear.</p>
+          <span class="article-meta">6 min read · Feb 2026</span>
+        </div>
+      </article>
+
+      <article class="article-card" data-anim="fade-up">
+        <div class="article-img" style="background-image:url('assets/article-2.jpg')"></div>
+        <div class="article-info">
+          <span class="article-tag">Culture</span>
+          <h3>Chandni Chowk: The Original Streetwear Hub</h3>
+          <p>Inside the lanes that styled generations before "streetwear" was a word.</p>
+          <span class="article-meta">4 min read · Jan 2026</span>
+        </div>
+      </article>
+
+      <article class="article-card" data-anim="fade-up">
+        <div class="article-img" style="background-image:url('assets/article-3.jpg')"></div>
+        <div class="article-info">
+          <span class="article-tag">Style</span>
+          <h3>Waffle Knits: Delhi's Winter Uniform</h3>
+          <p>Why this humble texture became the cold-weather staple for every creative in the city.</p>
+          <span class="article-meta">5 min read · Jan 2026</span>
+        </div>
+      </article>
+
+      <article class="article-card" data-anim="fade-up">
+        <div class="article-img" style="background-image:url('assets/article-4.jpg')"></div>
+        <div class="article-info">
+          <span class="article-tag">People</span>
+          <h3>Meet the Model: A Day with Kabir</h3>
+          <p>Behind the scenes of Drop 004 with the face of our latest campaign.</p>
+          <span class="article-meta">3 min read · Feb 2026</span>
+        </div>
+      </article>
+    </div>
   </section>
 
   <!-- NEWSLETTER -->
   <section class="newsletter" id="newsletter">
-    <h2>Get the drop <em style="color:var(--saffron);font-style:italic;">first</em>.</h2>
-    <p>No spam. Just early access, restocks, and secret sales.</p>
-    <form id="newsletterForm">
-      <input type="email" placeholder="your@email.com" required />
-      <button type="submit" class="btn btn-primary">Notify Me</button>
-    </form>
+    <div class="newsletter-inner" data-anim="fade-up">
+      <h2>Get the drop <em>first</em>.</h2>
+      <p>No spam. Just early access, restocks, and secret sales.</p>
+      <form id="newsletterForm">
+        <input type="email" placeholder="your@email.com" required />
+        <button type="submit" class="btn btn-primary">Notify Me</button>
+      </form>
+    </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <div class="logo">Delhi<span style="color:var(--saffron);">.</span>Culture</div>
+    <div class="logo">Delhi<span>.</span>Culture</div>
     <div class="links">
       <a href="#shop">Shop</a>
-      <a href="#story">Story</a>
+      <a href="#journal">Journal</a>
       <a href="#">Instagram</a>
       <a href="#">Contact</a>
     </div>
@@ -613,255 +224,10 @@
     </div>
   </aside>
 
-  <!-- TOAST -->
   <div class="toast" id="toast">Added to cart</div>
 
-  <script>
-    /* ============================================================
-       PRODUCT DATA — mapped to the 7 images you shared
-       ============================================================ */
-    const products = [
-      {
-        id: 1,
-        name: "Distressed Wide-Leg Denim",
-        tag: "New Drop",
-        price: 3499,
-        oldPrice: 4299,
-        img: "https://images.unsplash.com/photo-1542272604-787c3835535d?w=800&q=80",
-        sizes: ["28","30","32","34","36"],
-        note: "Mid-wash, side stripe, heavy distressing"
-      },
-      {
-        id: 2,
-        name: "Classic Straight Fit Jeans",
-        tag: "Best Seller",
-        price: 2999,
-        oldPrice: null,
-        img: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=800&q=80",
-        sizes: ["28","30","32","34","36","38"],
-        note: "Clean wash, straight leg, everyday pair"
-      },
-      {
-        id: 3,
-        name: "Vintage Grey Baggy Denim",
-        tag: "Limited",
-        price: 3799,
-        oldPrice: 4599,
-        img: "https://images.unsplash.com/photo-1475178626620-a4d074967452?w=800&q=80",
-        sizes: ["30","32","34","36"],
-        note: "Stone-washed grey, relaxed baggy fit"
-      },
-      {
-        id: 4,
-        name: "Jet Black Carpenter Pants",
-        tag: "New Drop",
-        price: 3299,
-        oldPrice: null,
-        img: "https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=800&q=80",
-        sizes: ["28","30","32","34","36"],
-        note: "Double-knee, workwear inspired, jet black"
-      },
-      {
-        id: 5,
-        name: "Bleached Distressed Denim",
-        tag: "Sale",
-        price: 2799,
-        oldPrice: 3499,
-        img: "https://images.unsplash.com/photo-1584370848010-d7fe6bc767ec?w=800&q=80",
-        sizes: ["30","32","34","36"],
-        note: "Bleached wash, rip details, wide leg"
-      },
-      {
-        id: 6,
-        name: "Sage Green Parachute Pants",
-        tag: "Trending",
-        price: 2599,
-        oldPrice: null,
-        img: "https://images.unsplash.com/photo-1509551388413-e18d0ac5d495?w=800&q=80",
-        sizes: ["Free Size"],
-        note: "Elastic waist, drawstring, ultra-baggy"
-      },
-      {
-        id: 7,
-        name: "Off-White Wide Cargo",
-        tag: "Restock",
-        price: 2899,
-        oldPrice: 3299,
-        img: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=800&q=80",
-        sizes: ["28","30","32","34"],
-        note: "Off-white tone, cargo pockets, wide cut"
-      }
-    ];
-
-    /* ============================================================
-       RENDER PRODUCTS
-       ============================================================ */
-    const grid = document.getElementById('productGrid');
-
-    function renderProducts() {
-      grid.innerHTML = products.map((p, i) => `
-        <div class="card" data-id="${p.id}" style="animation-delay:${0.05 + i*0.08}s">
-          <div class="card-img-wrap">
-            <img src="${p.img}" alt="${p.name}" loading="lazy" />
-            ${p.tag ? `<div class="card-badge ${p.tag === 'Sale' ? 'sale' : ''}">${p.tag}</div>` : ''}
-          </div>
-          <div class="card-info">
-            <div class="top-row">
-              <h3>${p.name}</h3>
-              <div class="price">
-                ₹${p.price.toLocaleString('en-IN')}
-                ${p.oldPrice ? `<small>₹${p.oldPrice.toLocaleString('en-IN')}</small>` : ''}
-              </div>
-            </div>
-            <div class="meta">
-              ${p.sizes.map(s => `<span>${s}</span>`).join('')}
-            </div>
-            <button class="add-btn" data-id="${p.id}">Add to Cart</button>
-          </div>
-        </div>
-      `).join('');
-    }
-    renderProducts();
-
-    /* ============================================================
-       CART STATE
-       ============================================================ */
-    let cart = [];
-
-    const cartBtn = document.getElementById('cartBtn');
-    const cartDrawer = document.getElementById('cartDrawer');
-    const cartOverlay = document.getElementById('cartOverlay');
-    const closeCart = document.getElementById('closeCart');
-    const cartItemsEl = document.getElementById('cartItems');
-    const cartFooter = document.getElementById('cartFooter');
-    const cartTotalEl = document.getElementById('cartTotal');
-    const cartCountEl = document.getElementById('cartCount');
-    const toast = document.getElementById('toast');
-
-    function openCart() {
-      cartDrawer.classList.add('open');
-      cartOverlay.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeCartFn() {
-      cartDrawer.classList.remove('open');
-      cartOverlay.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-    cartBtn.addEventListener('click', openCart);
-    closeCart.addEventListener('click', closeCartFn);
-    cartOverlay.addEventListener('click', closeCartFn);
-
-    function showToast(msg) {
-      toast.textContent = msg;
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 2200);
-    }
-
-    function updateCartUI() {
-      const totalQty = cart.reduce((a, c) => a + c.qty, 0);
-      cartCountEl.textContent = totalQty;
-
-      if (cart.length === 0) {
-        cartItemsEl.innerHTML = `<div class="cart-empty">Your cart is empty.<br>Go grab something.</div>`;
-        cartFooter.style.display = 'none';
-        return;
-      }
-
-      cartFooter.style.display = 'block';
-      cartItemsEl.innerHTML = cart.map(item => `
-        <div class="cart-item">
-          <img src="${item.img}" alt="${item.name}" />
-          <div class="cart-item-info">
-            <h4>${item.name}</h4>
-            <p>Size: ${item.size} · Qty: ${item.qty}</p>
-          </div>
-          <div class="cart-item-price">₹${(item.price * item.qty).toLocaleString('en-IN')}</div>
-        </div>
-      `).join('');
-
-      const total = cart.reduce((a, c) => a + c.price * c.qty, 0);
-      cartTotalEl.textContent = '₹' + total.toLocaleString('en-IN');
-    }
-
-    function addToCart(id) {
-      const product = products.find(p => p.id === id);
-      if (!product) return;
-
-      // Use first available size as default (simple vibe)
-      const size = product.sizes[0];
-      const existing = cart.find(c => c.id === id && c.size === size);
-
-      if (existing) {
-        existing.qty += 1;
-      } else {
-        cart.push({
-          id: product.id,
-          name: product.name,
-          price: product.price,
-          img: product.img,
-          size: size,
-          qty: 1
-        });
-      }
-
-      updateCartUI();
-      showToast(`${product.name} added`);
-
-      // Button feedback
-      const btn = document.querySelector(`.add-btn[data-id="${id}"]`);
-      if (btn) {
-        btn.classList.add('added');
-        btn.textContent = 'Added ✓';
-        setTimeout(() => {
-          btn.classList.remove('added');
-          btn.textContent = 'Add to Cart';
-        }, 1500);
-      }
-    }
-
-    // Event delegation for add-to-cart buttons
-    grid.addEventListener('click', (e) => {
-      const btn = e.target.closest('.add-btn');
-      if (btn) {
-        e.stopPropagation();
-        addToCart(Number(btn.dataset.id));
-      }
-    });
-
-    /* ============================================================
-       NEWSLETTER
-       ============================================================ */
-    document.getElementById('newsletterForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      showToast('You\'re on the list. Stay tuned.');
-      e.target.reset();
-    });
-
-    /* ============================================================
-       NAV SCROLL EFFECT
-       ============================================================ */
-    window.addEventListener('scroll', () => {
-      document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
-    });
-
-    /* ============================================================
-       SMOOTH SCROLL FOR ANCHORS (fallback)
-       ============================================================ */
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', (e) => {
-        const target = document.querySelector(link.getAttribute('href'));
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-
-    /* ============================================================
-       INIT
-       ============================================================ */
-    updateCartUI();
-  </script>
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
