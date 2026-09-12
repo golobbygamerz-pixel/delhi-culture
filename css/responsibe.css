@@ -1,0 +1,291 @@
+/* ============================================================
+   RESPONSIVE — Delhi Culture
+   Breakpoints: 1200 · 1024 · 900 · 768 · 600 · 480 · 380
+   ============================================================ */
+
+/* ============ LARGE DESKTOP (≤1200px) ============ */
+@media (max-width: 1200px) {
+  .journal-grid {
+    grid-template-columns: 1.4fr 1fr 1fr;
+  }
+  .article-card.featured .article-info h3 {
+    font-size: 1.6rem;
+  }
+}
+
+/* ============ TABLET LANDSCAPE (≤1024px) ============ */
+@media (max-width: 1024px) {
+  .nav-links { gap: 24px; }
+  .nav-links a { font-size: 0.75rem; letter-spacing: 1.5px; }
+
+  .section-head { margin-bottom: 48px; }
+
+  .hero-meta { gap: 32px; }
+  .hero-meta strong { font-size: 1.4rem; }
+
+  /* Journal — collapse to 2 columns */
+  .journal-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .article-card.featured {
+    grid-column: span 2;
+    grid-row: auto;
+  }
+  .article-card.featured .article-img {
+    aspect-ratio: 16/9;
+  }
+}
+
+/* ============ TABLET PORTRAIT (≤900px) ============ */
+@media (max-width: 900px) {
+  .hero-blob.b1 { width: 450px; height: 450px; top: -140px; right: -140px; }
+  .hero-blob.b2 { width: 400px; height: 400px; bottom: -170px; left: -120px; }
+
+  .hero-scroll { display: none; }
+
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 22px;
+  }
+
+  .story h2 { font-size: clamp(2rem, 7vw, 4rem); }
+}
+
+/* ============ MOBILE (≤768px) ============ */
+@media (max-width: 768px) {
+  /* ---------- NAV ---------- */
+  .nav-links { display: none; }
+
+  nav {
+    padding: 14px 5vw;
+  }
+  .logo { font-size: 1.2rem; }
+  .cart-btn {
+    padding: 8px 14px;
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
+    gap: 8px;
+  }
+  .cart-btn .count {
+    width: 18px; height: 18px;
+    font-size: 0.65rem;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero { padding: 110px 5vw 80px; min-height: auto; }
+  .hero-blob.b1 { width: 350px; height: 350px; top: -100px; right: -100px; filter: blur(60px); }
+  .hero-blob.b2 { width: 300px; height: 300px; bottom: -120px; left: -80px; filter: blur(60px); }
+
+  .tagline { font-size: 0.65rem; letter-spacing: 4px; }
+  .tagline::before { width: 28px; }
+
+  .hero-sub {
+    font-size: 0.95rem;
+    margin-top: 26px;
+    max-width: 100%;
+  }
+
+  .cta-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    margin-top: 36px;
+  }
+  .btn {
+    justify-content: center;
+    padding: 16px 28px;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+  }
+
+  .hero-meta {
+    gap: 24px;
+    margin-top: 44px;
+    padding-top: 24px;
+  }
+  .hero-meta strong { font-size: 1.25rem; }
+  .hero-meta span { font-size: 0.6rem; letter-spacing: 1.5px; }
+
+  /* ---------- MARQUEE ---------- */
+  .marquee { padding: 16px 0; }
+  .marquee-track { font-size: 1.1rem; letter-spacing: 2px; }
+  .marquee-track span { margin: 0 20px; }
+
+  /* ---------- SECTIONS ---------- */
+  section { padding: 80px 5vw; }
+  .section-head { margin-bottom: 40px; }
+  .section-tag { font-size: 0.65rem; letter-spacing: 3px; }
+  .section-head h2 { font-size: clamp(1.8rem, 8vw, 2.8rem); }
+  .section-head p { font-size: 0.9rem; max-width: 100%; }
+
+  /* ---------- GRID ---------- */
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 18px;
+  }
+  .card-info { padding: 16px 18px 18px; gap: 10px; }
+  .card-info h3 { font-size: 1rem; }
+  .price { font-size: 0.9rem; }
+  .meta { font-size: 0.65rem; gap: 6px; }
+  .meta span { padding: 3px 8px; }
+  .add-btn { padding: 12px; font-size: 0.7rem; letter-spacing: 1.5px; }
+
+  /* ---------- STORY ---------- */
+  .story { padding: 90px 5vw; }
+  .story p { font-size: 0.95rem; line-height: 1.7; }
+
+  /* ---------- JOURNAL ---------- */
+  .journal-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .article-card.featured {
+    grid-column: auto;
+  }
+  .article-card.featured .article-img { aspect-ratio: 4/3; }
+  .article-card.featured .article-info h3 { font-size: 1.3rem; }
+  .article-info { padding: 18px 20px 22px; }
+  .article-info h3 { font-size: 1.1rem; }
+  .article-info p { font-size: 0.85rem; }
+
+  /* ---------- NEWSLETTER ---------- */
+  .newsletter { padding: 80px 5vw; }
+  .newsletter form {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .newsletter input {
+    min-width: 100%;
+    padding: 14px 22px;
+    font-size: 0.85rem;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer { padding: 50px 5vw 32px; }
+  footer .logo { font-size: 1.4rem; }
+  footer .links { gap: 20px; }
+  footer .links a { font-size: 0.7rem; letter-spacing: 1px; }
+
+  /* ---------- CART DRAWER ---------- */
+  .cart-drawer { padding: 24px 20px; }
+  .cart-head h3 { font-size: 1.2rem; }
+  .cart-item img { width: 60px; height: 76px; }
+  .cart-item-info h4 { font-size: 0.8rem; }
+  .cart-item-info p { font-size: 0.75rem; }
+  .cart-item-price { font-size: 0.85rem; }
+  .cart-total { font-size: 1.1rem; }
+  .checkout-btn { padding: 16px; font-size: 0.75rem; }
+
+  /* ---------- CURSOR (disable on touch) ---------- */
+  .cursor, .cursor-dot { display: none; }
+}
+
+/* ============ SMALL MOBILE (≤480px) ============ */
+@media (max-width: 480px) {
+  /* NAV */
+  .logo { font-size: 1rem; letter-spacing: 1.5px; }
+  .cart-btn { padding: 7px 12px; font-size: 0.65rem; letter-spacing: 1px; }
+
+  /* HERO */
+  .hero { padding: 100px 5vw 60px; }
+  h1 { letter-spacing: -1px; line-height: 0.9; }
+  .hero-sub { font-size: 0.9rem; }
+  .hero-meta {
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .hero-meta strong { font-size: 1.1rem; }
+  .hero-meta span { font-size: 0.55rem; letter-spacing: 1px; }
+
+  /* GRID — single column */
+  .grid { grid-template-columns: 1fr; gap: 20px; }
+  .card-img-wrap { aspect-ratio: 3/4; }
+
+  /* SECTIONS */
+  section { padding: 70px 5vw; }
+  .section-head h2 { font-size: clamp(1.6rem, 9vw, 2.4rem); }
+
+  /* STORY */
+  .story { padding: 70px 5vw; }
+
+  /* JOURNAL */
+  .article-info h3 { font-size: 1rem; }
+  .article-card.featured .article-info h3 { font-size: 1.15rem; }
+
+  /* NEWSLETTER */
+  .newsletter { padding: 70px 5vw; }
+  .newsletter h2 { font-size: clamp(1.5rem, 8vw, 2.2rem); }
+
+  /* FOOTER */
+  footer .links { gap: 14px; }
+  footer .links a { font-size: 0.65rem; }
+
+  /* CART */
+  .cart-drawer { padding: 20px 16px; }
+  .cart-item { gap: 12px; }
+  .cart-item img { width: 52px; height: 66px; }
+  .cart-head { padding-bottom: 18px; margin-bottom: 16px; }
+}
+
+/* ============ EXTRA SMALL (≤380px) ============ */
+@media (max-width: 380px) {
+  .logo { font-size: 0.9rem; }
+  .cart-btn { padding: 6px 10px; font-size: 0.6rem; gap: 6px; }
+  .cart-btn .count { width: 16px; height: 16px; font-size: 0.6rem; }
+
+  h1 { font-size: clamp(2.4rem, 13vw, 3.2rem); }
+
+  .hero-meta { gap: 16px; }
+  .hero-meta strong { font-size: 1rem; }
+  .hero-meta span { font-size: 0.5rem; }
+
+  .btn { padding: 14px 22px; font-size: 0.7rem; letter-spacing: 1.5px; }
+
+  .section-head h2 { font-size: 1.5rem; }
+  .section-head p { font-size: 0.8rem; }
+
+  .card-info h3 { font-size: 0.9rem; }
+  .add-btn { padding: 11px; font-size: 0.65rem; }
+}
+
+/* ============ LANDSCAPE MOBILE (height-limited) ============ */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    min-height: auto;
+    padding: 100px 5vw 60px;
+  }
+  .hero-meta { margin-top: 30px; padding-top: 20px; }
+  .hero-scroll { display: none; }
+}
+
+/* ============ REDUCED MOTION ============ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .marquee-track { animation: none; }
+  .hero-blob { animation: none; }
+  .scroll-line { animation: none; }
+}
+
+/* ============ DARK MODE SUPPORT (bonus) ============ */
+@media (prefers-color-scheme: dark) {
+  /* Optional — comment out if you want to force light theme */
+  /*
+  body { background: #0F0806; color: #F5EFE6; }
+  */
+}
+
+/* ============ PRINT ============ */
+@media print {
+  nav, .marquee, .cart-drawer, .cart-overlay, .toast, .cursor, .cursor-dot {
+    display: none !important;
+  }
+  .hero { min-height: auto; padding: 40px; }
+  body { background: white; color: black; }
+}
